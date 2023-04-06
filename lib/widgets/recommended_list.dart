@@ -12,6 +12,7 @@ class RecommendedProducts extends ConsumerStatefulWidget {
 class _RecommendedProductsState extends ConsumerState<RecommendedProducts> {
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return SizedBox(
         height: 200,
         child: ListView.builder(
@@ -39,7 +40,11 @@ class _RecommendedProductsState extends ConsumerState<RecommendedProducts> {
                             radius: 30,
                           ),
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 30),
+                      Text("Hamburg", style: theme.textTheme.bodyLarge),
+                      const SizedBox(height: 20),
+                      Text("\$18", style: theme.textTheme.bodyLarge)
                     ],
                   ),
                 )));

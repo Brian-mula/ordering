@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ordering/widgets/custom_app_bar.dart';
 import 'package:ordering/widgets/recommended_list.dart';
+import 'package:ordering/widgets/tabsview.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -71,7 +72,11 @@ class _HomePageState extends ConsumerState<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            const RecommendedProducts()
+            const RecommendedProducts(),
+            const SizedBox(
+              height: 20,
+            ),
+            const TabssView()
           ],
         ),
       ),
