@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ordering/models/products_model.dart';
 
 class FeaturedProducts extends ConsumerStatefulWidget {
   const FeaturedProducts({super.key});
@@ -11,12 +12,41 @@ class FeaturedProducts extends ConsumerStatefulWidget {
 }
 
 class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
+  List<ProductsNodel> featured = [
+    ProductsNodel(
+        title: "Delicious Hot Dog",
+        img:
+            "https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__340.jpg",
+        price: 30,
+        oldprice: 45,
+        rating: ['1', '2', '3', '4', '5']),
+    ProductsNodel(
+        title: "Cheese Pizza",
+        img:
+            "https://cdn.pixabay.com/photo/2015/07/12/14/26/coffee-842020__340.jpg",
+        price: 10,
+        oldprice: 15,
+        rating: ['1', '2', '3']),
+    ProductsNodel(
+        title: "Sweet cheese",
+        img:
+            "https://cdn.pixabay.com/photo/2018/10/14/18/29/meatloaf-3747129__340.jpg",
+        price: 20,
+        oldprice: 25,
+        rating: [
+          '1',
+          '2',
+          '3',
+          '4',
+        ]),
+  ];
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return SizedBox(
         height: 190,
         child: ListView.builder(
+            itemCount: featured.length,
             itemBuilder: (context, index) => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -29,9 +59,8 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                             width: 90,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                image: const DecorationImage(
-                                    image: NetworkImage(
-                                        "https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294__340.jpg"),
+                                image: DecorationImage(
+                                    image: NetworkImage(featured[index].img),
                                     fit: BoxFit.cover)),
                           ),
                           const SizedBox(
@@ -41,7 +70,7 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Delicious Hot Dog",
+                                featured[index].title,
                                 style: theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.black),
                               ),
@@ -49,7 +78,8 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                                 height: 6,
                               ),
                               RatingBar.builder(
-                                initialRating: 3,
+                                initialRating:
+                                    featured[index].rating.length.toDouble(),
                                 minRating: 1,
                                 direction: Axis.horizontal,
                                 allowHalfRating: true,
@@ -71,7 +101,7 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                               Row(
                                 children: [
                                   Text(
-                                    "\$6",
+                                    "\$${featured[index].price.toString()}",
                                     style: theme.textTheme.bodyMedium!
                                         .copyWith(color: Colors.red.shade600),
                                   ),
@@ -79,7 +109,7 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                                     width: 5,
                                   ),
                                   Text(
-                                    "\$16",
+                                    "\$${featured[index].oldprice.toString()}",
                                     style: theme.textTheme.bodyMedium!.copyWith(
                                         color: Colors.black38,
                                         decoration: TextDecoration.lineThrough),
