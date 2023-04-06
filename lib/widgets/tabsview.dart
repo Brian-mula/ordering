@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ordering/widgets/featured_products.dart';
 
 class TabssView extends ConsumerStatefulWidget {
   const TabssView({super.key});
@@ -26,7 +27,7 @@ class _TabssViewState extends ConsumerState<TabssView> {
       )
     ];
     final tabsViews = [
-      const Text("Favorite"),
+      const FeaturedProducts(),
       const Text("Combos"),
       const Text("Favorite"),
       const Text("Recommnded"),
