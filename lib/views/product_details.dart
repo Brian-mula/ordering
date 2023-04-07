@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ordering/models/products_model.dart';
 import 'package:ordering/widgets/individual_product.dart';
 
 class ProductDetails extends ConsumerWidget {
@@ -8,6 +9,7 @@ class ProductDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final product = ModalRoute.of(context)!.settings.arguments as ProductsNodel;
     ThemeData theme = Theme.of(context);
     return Scaffold(
       body: Container(
@@ -52,26 +54,30 @@ class ProductDetails extends ConsumerWidget {
             const SizedBox(
               height: 40,
             ),
-            Text(
-              "Super".toUpperCase(),
-              style: theme.textTheme.headlineLarge!
-                  .copyWith(color: Colors.black87, fontWeight: FontWeight.bold),
+            SizedBox(
+              width: 200,
+              child: Column(
+                children: [
+                  Text(
+                    product.title.toUpperCase(),
+                    style: theme.textTheme.headlineLarge!.copyWith(
+                        color: Colors.black87, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              "Beef Burger".toUpperCase(),
-              style: theme.textTheme.headlineLarge!
-                  .copyWith(color: Colors.black87, fontWeight: FontWeight.bold),
+            IndividualProduct(
+              product: product,
             ),
-            const IndividualProduct(),
             const SizedBox(height: 50),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "\$42",
+                  "\$${product.price}",
                   style: theme.textTheme.headlineLarge!
                       .copyWith(color: Colors.black54),
                 ),

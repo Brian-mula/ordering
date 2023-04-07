@@ -44,7 +44,8 @@ class _RecommendedProductsState extends ConsumerState<RecommendedProducts> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/product_details');
+                    Navigator.pushNamed(context, '/product_details',
+                        arguments: products[index]);
                   },
                   child: Container(
                     height: 200,

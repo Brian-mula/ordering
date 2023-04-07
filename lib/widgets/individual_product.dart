@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ordering/models/products_model.dart';
 
 class IndividualProduct extends ConsumerStatefulWidget {
-  const IndividualProduct({super.key});
-
+  const IndividualProduct({super.key, required this.product});
+  final ProductsNodel product;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _IndividualProductState();
@@ -24,9 +25,8 @@ class _IndividualProductState extends ConsumerState<IndividualProduct> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 color: Colors.blue,
-                image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://cdn.pixabay.com/photo/2017/09/17/22/01/pretzels-2759994__340.jpg'),
+                image: DecorationImage(
+                    image: NetworkImage(widget.product.img),
                     fit: BoxFit.cover)),
           ),
           Column(
