@@ -2,6 +2,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ordering/models/products_model.dart';
+import 'package:ordering/providers/product_provider.dart';
 import 'package:ordering/widgets/individual_product.dart';
 
 class ProductDetails extends ConsumerWidget {
@@ -10,6 +11,7 @@ class ProductDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final product = ModalRoute.of(context)!.settings.arguments as ProductsNodel;
+    final productProvider = ref.read(productsProvider);
     ThemeData theme = Theme.of(context);
     return Scaffold(
       body: Container(
@@ -83,7 +85,7 @@ class ProductDetails extends ConsumerWidget {
                 ),
               ),
               Container(
-                width: 250,
+                width: 270,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
                     color: Colors.red.shade400),
@@ -92,14 +94,16 @@ class ProductDetails extends ConsumerWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
-                      width: 130,
+                      width: 150,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: Colors.white),
                       child: Row(
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                productProvider.checkQuantity(false);
+                              },
                               icon: Icon(
                                 Icons.remove,
                                 color: Colors.red.shade400,
@@ -108,7 +112,7 @@ class ProductDetails extends ConsumerWidget {
                             width: 8,
                           ),
                           Text(
-                            "2",
+                            productProvider.quantity.toString(),
                             style: theme.textTheme.headlineMedium!
                                 .copyWith(color: Colors.red.shade400),
                           ),
@@ -116,7 +120,9 @@ class ProductDetails extends ConsumerWidget {
                             width: 8,
                           ),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                productProvider.checkQuantity(true);
+                              },
                               icon: Icon(
                                 Icons.add,
                                 color: Colors.red.shade400,
