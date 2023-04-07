@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ordering/models/products_model.dart';
 import 'package:ordering/providers/product_provider.dart';
+import 'package:ordering/widgets/featured_products.dart';
 import 'package:ordering/widgets/individual_product.dart';
 
 class ProductDetails extends ConsumerWidget {
@@ -145,7 +146,20 @@ class ProductDetails extends ConsumerWidget {
                   ],
                 ),
               )
-            ])
+            ]),
+            const SizedBox(
+              height: 40,
+            ),
+            Text(
+              "Featured".toUpperCase(),
+              style: theme.textTheme.headlineLarge,
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            const FeaturedProducts(
+              showAdd: false,
+            )
           ],
         ),
       ),

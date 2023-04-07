@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ordering/models/products_model.dart';
 
 class FeaturedProducts extends ConsumerStatefulWidget {
-  const FeaturedProducts({super.key});
-
+  const FeaturedProducts({super.key, this.showAdd = true});
+  final bool showAdd;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _FeaturedProductsState();
@@ -19,14 +19,16 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
             "https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706__340.jpg",
         price: 30,
         oldprice: 45,
-        rating: ['1', '2', '3', '4', '5']),
+        rating: ['1', '2', '3', '4', '5'],
+        color: Colors.pink.shade200),
     ProductsNodel(
         title: "Cheese Pizza",
         img:
             "https://cdn.pixabay.com/photo/2015/07/12/14/26/coffee-842020__340.jpg",
         price: 10,
         oldprice: 15,
-        rating: ['1', '2', '3']),
+        rating: ['1', '2', '3'],
+        color: Colors.blue.shade400),
     ProductsNodel(
         title: "Sweet cheese",
         img:
@@ -38,7 +40,8 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
           '2',
           '3',
           '4',
-        ]),
+        ],
+        color: Colors.blue.shade200),
   ];
   @override
   Widget build(BuildContext context) {
@@ -121,20 +124,22 @@ class _FeaturedProductsState extends ConsumerState<FeaturedProducts> {
                         ],
                       ),
                     ),
-                    Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.orange.shade700),
-                      child: const Center(
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                      ),
-                    )
+                    widget.showAdd
+                        ? Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.orange.shade700),
+                            child: const Center(
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            ),
+                          )
+                        : Container()
                   ],
                 )));
   }

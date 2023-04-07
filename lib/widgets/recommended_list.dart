@@ -18,21 +18,24 @@ class _RecommendedProductsState extends ConsumerState<RecommendedProducts> {
             "https://cdn.pixabay.com/photo/2017/09/28/18/13/bread-2796393__340.jpg",
         price: 20,
         oldprice: 30,
-        rating: ['1234', '4567', '7890', '4321', '7854']),
+        rating: ['1234', '4567', '7890', '4321', '7854'],
+        color: Colors.orange.shade50),
     ProductsNodel(
         title: "Chips",
         img:
             "https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294__340.jpg",
         price: 20,
         oldprice: 30,
-        rating: ['1234', '4567', '7890', '4321', '7854']),
+        rating: ['1234', '4567', '7890', '4321', '7854'],
+        color: Colors.blue.shade200),
     ProductsNodel(
         title: "Doughnuts",
         img:
             "https://cdn.pixabay.com/photo/2016/11/21/15/52/french-fries-1846083__340.jpg",
         price: 20,
         oldprice: 30,
-        rating: ['1234', '4567', '7890', '4321', '7854']),
+        rating: ['1234', '4567', '7890', '4321', '7854'],
+        color: Colors.blue.shade100),
   ];
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ class _RecommendedProductsState extends ConsumerState<RecommendedProducts> {
                     width: 140,
                     margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: products[index].color,
                         borderRadius: BorderRadius.circular(6)),
                     child: Column(
                       children: [
